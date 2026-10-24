@@ -77,7 +77,6 @@ window.__ModuleLoader__.load({
         frame.setAttribute('data-rescue-frame', '');
         sidebar.setAttribute('data-rescue-sidebar', '');
         center.setAttribute('data-rescue-center', '');
-        frame.style.setProperty('--rescue-wash', `url("${assets.wash}")`);
         let scheduled = 0;
         let observedComposer = null;
         const measure = () => {
@@ -130,7 +129,6 @@ window.__ModuleLoader__.load({
           frame.removeAttribute('data-rescue-frame');
           sidebar.removeAttribute('data-rescue-sidebar');
           center.removeAttribute('data-rescue-center');
-          frame.style.removeProperty('--rescue-wash');
         };
       }, [active]);
 

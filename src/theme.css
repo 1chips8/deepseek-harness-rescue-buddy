@@ -1,17 +1,22 @@
 [data-rescue-frame] {
-  --rescue-veil: rgba(255, 253, 248, .26);
   background: #fffdf8;
 }
 [data-rescue-center], [data-rescue-sidebar] {
   background-color: #fffdf8;
-  background-image: linear-gradient(var(--rescue-veil), var(--rescue-veil)), var(--rescue-wash);
+  background-image: linear-gradient(90deg, rgba(255,253,248,.18) 0%, rgba(255,253,248,.18) 12%, rgba(255,253,248,.65) 23%, rgba(255,253,248,.65) 78%, rgba(255,253,248,.18) 90%), url('__RESCUE_WASH__');
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
 }
 [data-rescue-sidebar] {
-  --rescue-veil: rgba(251, 249, 252, .72);
   background-color: #fbf9fc;
+  background-size: auto 100%;
+  background-position: left center;
+  box-shadow: inset 0 0 0 100vmax rgba(251, 249, 252, .56);
+}
+[data-rescue-center] [data-composer-card] {
+  border: 1px solid rgba(172, 140, 219, .42);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, .42), 0 9px 32px rgba(132, 98, 174, .12);
 }
 .rescue-buddy-art {
   position: fixed;
@@ -38,8 +43,10 @@
 .rescue-buddy-settings input[type=range] { flex: 1; min-width: 80px; }
 .rescue-buddy-settings output { min-width: 35px; text-align: right; font-variant-numeric: tabular-nums; }
 .rescue-buddy-settings [role=alert] { color: #b93e4b; font-size: 12px; }
-body[data-ds-dark-theme] [data-rescue-frame] { --rescue-veil: rgba(24, 22, 31, .96); background: #18161f; }
-body[data-ds-dark-theme] [data-rescue-sidebar] { --rescue-veil: rgba(29, 26, 37, .97); background-color: #1d1a25; }
+body[data-ds-dark-theme] [data-rescue-frame] { background: #18161f; }
+body[data-ds-dark-theme] [data-rescue-center] { box-shadow: inset 0 0 0 100vmax rgba(24, 22, 31, .96); }
+body[data-ds-dark-theme] [data-rescue-sidebar] { background-color: #1d1a25; box-shadow: inset 0 0 0 100vmax rgba(29, 26, 37, .97); }
+body[data-ds-dark-theme] [data-rescue-center] [data-composer-card] { box-shadow: 0 0 0 4px rgba(173,147,211,.07), 0 9px 32px rgba(0,0,0,.2); }
 body[data-ds-dark-theme] .rescue-buddy-art { filter: brightness(.78); }
 body:has([role=dialog]) .rescue-buddy-art,
 body:has([aria-modal=true]) .rescue-buddy-art { visibility: hidden; }

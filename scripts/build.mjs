@@ -21,9 +21,19 @@ for (const [key, filename] of Object.entries({
   inventory.push({ filename, bytes: bytes.length, width: bytes.readUInt32BE(16),
     height: bytes.readUInt32BE(20), sha256: createHash('sha256').update(bytes).digest('hex') });
 }
-const css = await readFile(resolve(root, 'src/theme.css'), 'utf8');
+// A PNG data URI can exceed Chromium's CSS custom-property size limit.
+// Emit it directly in the CSS image declaration instead of a --variable.
+const css = (await readFile(resolve(root, 'src/theme.css'), 'utf8'))
+  .replace('__RESCUE_WASH__', assets.wash);
+if (css.includes('__RESCUE_WASH__')) throw new Error('Unresolved wallpaper image');
+// Mixing var() with the multi-megabyte image declaration triggers the same
+// computed-value limit, even when the URL itself is not held in a variable.
+for (const declaration of css.matchAll(/background-image\s*:\s*([^;]*(?:;base64,[^;]*)?);/g)) {
+  if (declaration[1].includes('var(')) throw new Error('Wallpaper image must not depend on CSS variables');
+}
+const { wash, ...artwork } = assets;
 const client = (await readFile(resolve(root, 'src/client.js'), 'utf8'))
-  .replace('/* BUILD:ASSETS */ null', JSON.stringify(assets))
+  .replace('/* BUILD:ASSETS */ null', JSON.stringify(artwork))
   .replace('/* BUILD:STYLES */ null', JSON.stringify(css));
 if (/\/\* BUILD:/.test(client)) throw new Error('Unresolved build placeholder');
 await writeFile(resolve(dist, 'client.js'), client);

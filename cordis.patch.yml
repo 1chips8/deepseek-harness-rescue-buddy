@@ -1,0 +1,3 @@
+- insert:
+    - id: rescue-buddy
+      name: '@local/dsh-rescue-buddy'

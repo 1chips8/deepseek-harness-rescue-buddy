@@ -1,0 +1,23 @@
+[
+  {
+    "filename": "cream-watercolor.png",
+    "bytes": 1825904,
+    "width": 1586,
+    "height": 992,
+    "sha256": "89b709d49e3bd8cc508516f2c9b112b6e2d651b59ec71afedd98875d6a82a800"
+  },
+  {
+    "filename": "rescue-hero.png",
+    "bytes": 1655790,
+    "width": 1254,
+    "height": 1254,
+    "sha256": "30b49d84d76a64b38e32f288fae52c5b72719ebb1629c95cc3b490b7fe2b435c"
+  },
+  {
+    "filename": "sidebar-friends.png",
+    "bytes": 1668230,
+    "width": 1774,
+    "height": 887,
+    "sha256": "c2dbfbacaecf99ed4fedd0456fd3f690a57437917f2ef6223edbfceb0db914d8"
+  }
+]
